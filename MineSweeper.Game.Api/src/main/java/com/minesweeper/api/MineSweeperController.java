@@ -1,12 +1,10 @@
 package com.minesweeper.api;
 
-import com.minesweeper.application.model.BoardRequest;
 import com.minesweeper.application.model.MarkType;
-import com.minesweeper.application.model.PlayRequest;
-import com.minesweeper.application.service.Interface.IMineSweeperService;
-import com.minesweeper.domain.exception.MinesweeperException;
 import javax.validation.Valid;
+
 import lombok.extern.slf4j.Slf4j;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,6 +17,11 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.minesweeper.domain.exception.MinesweeperException;
+import com.minesweeper.application.model.BoardRequest;
+import com.minesweeper.application.model.PlayRequest;
+import com.minesweeper.application.service.interfaces.MineSweeperService;
+
 @RestController
 @RequestMapping("/minesweeper/v1")
 @Validated
@@ -26,18 +29,16 @@ import org.springframework.web.bind.annotation.RestController;
 public class MineSweeperController {
 
 	@Autowired
-	private IMineSweeperService mineSweeperService;
+	private MineSweeperService mineSweeperService;
 
 	@PostMapping(value="/game", consumes = "application/json")
 	public ResponseEntity newGame(@Valid @RequestBody BoardRequest request) {
-
 		try {
 			if (request.getMines() > request.getColumns() * request.getRows()) {
 				return ResponseEntity.badRequest().body("to many mines");
 			}
 			return ResponseEntity.status(HttpStatus.CREATED).body(mineSweeperService.createGame(request));
-		} catch (MinesweeperException e)
-		{
+		} catch (MinesweeperException e) {
 			log.error("[Minesweeper] Failed to create a new game exception={}", e);
 			return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
 		}

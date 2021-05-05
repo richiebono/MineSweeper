@@ -61,44 +61,4 @@ public class Game {
 		this.redFlag = false;
 		this.questionMark = false;
 	}
-
-	public long getId() {
-		return id;
-	}
-
-	public String getUserName() {
-		return userName;
-	}
-
-	public GameStates getState() {
-		return state;
-	}
-
-	public void setState(GameStates state) {
-		this.state = state;
-	}
-
-	public Cell[][] getMines() {
-		return mines;
-	}
-
-	public void setMines(Cell[][] mines) {
-		this.mines = mines;
-	}
-
-	public Boolean getRedFlag() {
-		return redFlag;
-	}
-
-	public void setRedFlag(Boolean redFlag) {
-		this.redFlag = redFlag;
-	}
-
-	public Boolean getQuestionMark() {
-		return questionMark;
-	}
-
-	public void setQuestionMark(Boolean questionMark) {
-		this.questionMark = questionMark;
-	}
 }

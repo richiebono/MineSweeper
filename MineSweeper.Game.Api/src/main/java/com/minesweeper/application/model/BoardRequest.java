@@ -28,36 +28,4 @@ public class BoardRequest {
 	@Min(1)
 	@Max(2401) // (x-1)(y-1) where x is max columns and y is max rows. (https://en.wikipedia.org/wiki/Microsoft_Minesweeper)
 	private int mines;
-
-	public int getMines() {
-		return mines;
-	}
-
-	public void setMines(int mines) {
-		this.mines = mines;
-	}
-
-	public int getColumns() {
-		return columns;
-	}
-
-	public void setColumns(int columns) {
-		this.columns = columns;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public int getRows() {
-		return rows;
-	}
-
-	public void setRows(int rows) {
-		this.rows = rows;
-	}
 }

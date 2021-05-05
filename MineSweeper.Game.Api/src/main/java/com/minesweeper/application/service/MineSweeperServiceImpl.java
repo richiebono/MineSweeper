@@ -1,5 +1,12 @@
 package com.minesweeper.application.service;
 
+import com.minesweeper.domain.entity.Game;
+import com.minesweeper.domain.exception.MinesweeperException;
+import com.minesweeper.infrastructure.helper.MinesweeperHelper;
+import com.minesweeper.application.model.GameBean;
+import com.minesweeper.application.model.GameStates;
+import com.minesweeper.application.model.MarkType;
+import com.minesweeper.infrastructure.repository.GameRepository;
 import java.util.Optional;
 
 import lombok.extern.slf4j.Slf4j;
@@ -8,21 +15,14 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.minesweeper.domain.entity.Game;
-import com.minesweeper.domain.exception.MinesweeperException;
-import com.minesweeper.infrastructure.helper.MinesweeperHelper;
-import com.minesweeper.application.model.GameBean;
 import com.minesweeper.application.model.BoardRequest;
 import com.minesweeper.application.model.Cell;
-import com.minesweeper.application.model.GameStates;
-import com.minesweeper.application.model.MarkType;
 import com.minesweeper.application.model.PlayRequest;
-import com.minesweeper.infrastructure.repository.GameRepository;
-import com.minesweeper.application.service.Interface.IMineSweeperService;
+import com.minesweeper.application.service.interfaces.MineSweeperService;
 
 @Slf4j
 @Service
-public class MineSweeperService implements IMineSweeperService {
+public class MineSweeperServiceImpl implements MineSweeperService {
 
 	@Autowired
 	private GameRepository gameRepository;

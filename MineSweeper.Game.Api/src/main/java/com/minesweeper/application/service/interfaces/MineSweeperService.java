@@ -1,11 +1,11 @@
-package com.minesweeper.application.service.Interface;
+package com.minesweeper.application.service.interfaces;
 
 import com.minesweeper.application.model.GameBean;
 import com.minesweeper.application.model.BoardRequest;
 import com.minesweeper.application.model.MarkType;
 import com.minesweeper.application.model.PlayRequest;
 
-public interface IMineSweeperService {
+public interface MineSweeperService {
 
 	/**
 	 * Given a user name, count of rows, count of columns and count mines,
