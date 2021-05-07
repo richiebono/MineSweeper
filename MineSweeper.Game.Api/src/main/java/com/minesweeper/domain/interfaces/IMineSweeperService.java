@@ -1,11 +1,11 @@
-package com.minesweeper.application.service.interfaces;
+package com.minesweeper.domain.interfaces;
 
-import com.minesweeper.application.model.GameBean;
-import com.minesweeper.application.model.BoardRequest;
-import com.minesweeper.application.model.MarkType;
-import com.minesweeper.application.model.PlayRequest;
+import com.minesweeper.domain.entity.BoardRequest;
+import com.minesweeper.domain.entity.GameBean;
+import com.minesweeper.domain.enums.EMarkType;
+import com.minesweeper.domain.enums.EPlayRequest;
 
-public interface MineSweeperService {
+public interface IMineSweeperService {
 
 	/**
 	 * Given a user name, count of rows, count of columns and count mines,
@@ -31,7 +31,7 @@ public interface MineSweeperService {
 	 * @param request row and column to be discovered
 	 * @return board
 	 */
-	GameBean play(String username, PlayRequest request);
+	GameBean play(String username, EPlayRequest request);
 
 	/**
 	 * Given a row and column mark a cell with a question symbol or a red flag.
@@ -40,5 +40,5 @@ public interface MineSweeperService {
 	 * @param request
 	 * @return
 	 */
-	GameBean mark(String userName, PlayRequest request, MarkType markType);
+	GameBean mark(String userName, EPlayRequest request, EMarkType EMarkType);
 }

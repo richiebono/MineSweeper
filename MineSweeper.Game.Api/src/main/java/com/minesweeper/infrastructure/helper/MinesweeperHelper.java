@@ -6,8 +6,8 @@ import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.stereotype.Component;
 
-import com.minesweeper.application.model.BoardRequest;
-import com.minesweeper.application.model.Cell;
+import com.minesweeper.domain.entity.BoardRequest;
+import com.minesweeper.domain.entity.Cell;
 
 @Slf4j
 @Component

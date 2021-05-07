@@ -1,4 +1,4 @@
-package com.minesweeper.application.model;
+package com.minesweeper.domain.entity;
 
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;

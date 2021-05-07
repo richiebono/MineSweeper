@@ -1,6 +1,7 @@
-package com.minesweeper.api;
+package com.minesweeper.api.controllers;
 
-import com.minesweeper.application.model.MarkType;
+import com.minesweeper.application.models.BoardRequestViewModel;
+import com.minesweeper.domain.enums.EMarkType;
 import javax.validation.Valid;
 
 import lombok.extern.slf4j.Slf4j;
@@ -18,9 +19,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.minesweeper.domain.exception.MinesweeperException;
-import com.minesweeper.application.model.BoardRequest;
-import com.minesweeper.application.model.PlayRequest;
-import com.minesweeper.application.service.interfaces.MineSweeperService;
+import com.minesweeper.domain.entity.BoardRequest;
+import com.minesweeper.domain.enums.EPlayRequest;
+import com.minesweeper.application.interfaces.IMineSweeperAppService;
 
 @RestController
 @RequestMapping("/minesweeper/v1")
@@ -29,15 +30,15 @@ import com.minesweeper.application.service.interfaces.MineSweeperService;
 public class MineSweeperController {
 
 	@Autowired
-	private MineSweeperService mineSweeperService;
+	private IMineSweeperAppService mineSweeperAppService;
 
 	@PostMapping(value="/game", consumes = "application/json")
-	public ResponseEntity newGame(@Valid @RequestBody BoardRequest request) {
+	public ResponseEntity newGame(@Valid @RequestBody BoardRequestViewModel request) {
 		try {
 			if (request.getMines() > request.getColumns() * request.getRows()) {
 				return ResponseEntity.badRequest().body("to many mines");
 			}
-			return ResponseEntity.status(HttpStatus.CREATED).body(mineSweeperService.createGame(request));
+			return ResponseEntity.status(HttpStatus.CREATED).body(mineSweeperAppService.createGame(request));
 		} catch (MinesweeperException e) {
 			log.error("[Minesweeper] Failed to create a new game exception={}", e);
 			return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
@@ -45,11 +46,11 @@ public class MineSweeperController {
 	}
 
 	@PostMapping(value = "/game/{userName}",  consumes = "application/json")
-	public ResponseEntity playGame(@Valid @RequestBody PlayRequest request, @PathVariable String userName) {
+	public ResponseEntity playGame(@Valid @RequestBody EPlayRequest request, @PathVariable String userName) {
 		try {
 			// Get user name in the url path
 			// Call the service in order to execute the movement with row, column to that game.
-			return ResponseEntity.ok(mineSweeperService.play(userName, request));
+			return ResponseEntity.ok(mineSweeperAppService.play(userName, request));
 		} catch (MinesweeperException e) {
 			log.error("[Minesweeper Failed to execute movement to play for username={}, exception={}", userName, e);
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
@@ -60,7 +61,7 @@ public class MineSweeperController {
 	public ResponseEntity getGames(@PathVariable String userName) {
 		try {
 			// Get a stores board game for an user.
-			return ResponseEntity.ok(mineSweeperService.getGame(userName));
+			return ResponseEntity.ok(mineSweeperAppService.getGame(userName));
 		} catch (MinesweeperException e) {
 			log.error("[Minesweeper] Failed to get a persisted board game for username={}, exception={}", userName, e);
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
@@ -68,11 +69,11 @@ public class MineSweeperController {
 	}
 
 	@PutMapping(value = "/game/{userName}/flag", consumes = "application/json")
-	public ResponseEntity redFlag(@Valid @RequestBody PlayRequest request, @PathVariable String userName) {
+	public ResponseEntity redFlag(@Valid @RequestBody EPlayRequest request, @PathVariable String userName) {
 		try {
 			// Get user name in the url path
 			// Call the service in order to set the flag in row and column in the user's game.
-			return ResponseEntity.ok(mineSweeperService.mark(userName, request, MarkType.REDFLAG));
+			return ResponseEntity.ok(mineSweeperAppService.mark(userName, request, EMarkType.REDFLAG));
 		} catch (MinesweeperException e) {
 			log.error("[Minesweeper] Failed to set a red flag in row={}, column={} for username={}, exception={}", request.getRow(),
 					request.getColumn(), userName, e);
@@ -81,11 +82,11 @@ public class MineSweeperController {
 	}
 
 	@PutMapping(value = "/game/{userName}/question",  consumes = "application/json")
-	public ResponseEntity questionMark(@Valid @RequestBody PlayRequest request, @PathVariable String userName) {
+	public ResponseEntity questionMark(@Valid @RequestBody EPlayRequest request, @PathVariable String userName) {
 		try {
 			// Get user name in the url path
 			// Call the service in order to set the question symbol in row and column in the user's game.
-			return ResponseEntity.ok(mineSweeperService.mark(userName, request, MarkType.QUESTION));
+			return ResponseEntity.ok(mineSweeperAppService.mark(userName, request, EMarkType.QUESTION));
 		} catch (MinesweeperException e) {
 			log.error("[Minesweeper] Failed to set a question symbol in row={}, column={} for username={}, exception={}", request.getRow(),
 					request.getColumn(), userName, e);

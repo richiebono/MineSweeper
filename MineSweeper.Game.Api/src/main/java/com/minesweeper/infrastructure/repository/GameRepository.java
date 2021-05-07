@@ -6,11 +6,11 @@ import java.util.Optional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import com.minesweeper.application.model.GameStates;
+import com.minesweeper.domain.enums.EGameStates;
 
 @Repository
 public interface GameRepository extends JpaRepository<Game, Long> {
 
-	Optional<Game> findByUserNameAndState(String useerName, GameStates State);
+	Optional<Game> findByUserNameAndState(String useerName, EGameStates State);
 
 }

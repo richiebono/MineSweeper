@@ -16,8 +16,7 @@ import lombok.NoArgsConstructor;
 import org.hibernate.annotations.Type;
 import org.hibernate.annotations.TypeDef;
 
-import com.minesweeper.application.model.Cell;
-import com.minesweeper.application.model.GameStates;
+import com.minesweeper.domain.enums.EGameStates;
 import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
 
 @Data
@@ -42,7 +41,7 @@ public class Game {
 
 	@Column
 	@Enumerated(EnumType.STRING)
-	private GameStates state;
+	private EGameStates state;
 
 	@Type(type = "jsonb")
 	@Column(columnDefinition = "jsonb")
@@ -57,7 +56,7 @@ public class Game {
 	public Game(Cell[][] mines, String userName) {
 		this.mines = mines;
 		this.userName = userName;
-		this.state = GameStates.ACTIVE;
+		this.state = EGameStates.ACTIVE;
 		this.redFlag = false;
 		this.questionMark = false;
 	}
