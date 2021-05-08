@@ -22,7 +22,7 @@ public class SwaggerConfig {
 				.select()
 				.apis(RequestHandlerSelectors.any())
 				.paths(PathSelectors.any())
-				.apis(RequestHandlerSelectors.basePackage("com.maximicciullo.minesweeper.controller"))
+				.apis(RequestHandlerSelectors.basePackage("com.minesweeper.api.controllers"))
 				.build()
 				.apiInfo(apiInfo());
 	}

@@ -1,5 +1,9 @@
 package com.minesweeper;
 
+import com.minesweeper.application.interfaces.IMineSweeperAppService;
+import com.minesweeper.application.services.MineSweeperAppService;
+import com.minesweeper.domain.interfaces.IMineSweeperService;
+import com.minesweeper.domain.services.MineSweeperService;
 import org.modelmapper.ModelMapper;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -17,4 +21,12 @@ public class MinesweeperApplication {
 	public ModelMapper modelMapper() {
 		return new ModelMapper();
 	}
+
+
+	@Bean
+	public IMineSweeperAppService mineSweeperAppService() {
+		return new MineSweeperAppService();
+	}
+
+
 }

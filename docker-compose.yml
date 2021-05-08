@@ -9,9 +9,11 @@ services:
     environment:
       POSTGRES_USER: adminsweeper
       POSTGRES_PASSWORD: adminSweeper@05052021
+    ports:
+      - 5432:5432
 
   adminer:
     image: adminer
     restart: always
     ports:
-      - 5432:5432
+      - 8081:8081

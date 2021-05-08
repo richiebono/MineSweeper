@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.minesweeper.domain.exception.MinesweeperException;
-import com.minesweeper.domain.entity.BoardRequest;
 import com.minesweeper.domain.enums.EPlayRequest;
 import com.minesweeper.application.interfaces.IMineSweeperAppService;
 
@@ -31,6 +30,11 @@ public class MineSweeperController {
 
 	@Autowired
 	private IMineSweeperAppService mineSweeperAppService;
+
+	public MineSweeperController(
+			IMineSweeperAppService mineSweeperAppService) {
+		this.mineSweeperAppService = mineSweeperAppService;
+	}
 
 	@PostMapping(value="/game", consumes = "application/json")
 	public ResponseEntity newGame(@Valid @RequestBody BoardRequestViewModel request) {
