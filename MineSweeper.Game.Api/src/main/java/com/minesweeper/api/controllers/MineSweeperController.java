@@ -7,6 +7,8 @@ import javax.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -39,6 +41,7 @@ public class MineSweeperController {
 	}
 
 	@PostMapping(value="/game", consumes = "application/json")
+	@CacheEvict(value="/games/{userName}", allEntries = true)
 	public ResponseEntity newGame(@Valid @RequestBody BoardRequestViewModel request) {
 		try {
 			if (request.getMines() > request.getColumns() * request.getRows()) {
@@ -75,6 +78,7 @@ public class MineSweeperController {
 	}
 
 	@GetMapping(value="/games/{userName}")
+	@Cacheable(value = "getGamesByUser{userName}")
 	public ResponseEntity getGames(@RequestParam @PathVariable String userName, @RequestParam(required = false) Pageable pageable) {
 		try {
 			// Get a stores board game for an user.
@@ -86,6 +90,7 @@ public class MineSweeperController {
 	}
 
 	@PutMapping(value = "/game/{userName}/flag", consumes = "application/json")
+	@CacheEvict(value="/games/{userName}", allEntries = true)
 	public ResponseEntity redFlag(@Valid @RequestBody EPlayRequest request, @PathVariable String userName) {
 		try {
 			// Get user name in the url path
@@ -99,6 +104,7 @@ public class MineSweeperController {
 	}
 
 	@PutMapping(value = "/game/{userName}/question",  consumes = "application/json")
+	@CacheEvict(value="/games/{userName}", allEntries = true)
 	public ResponseEntity questionMark(@Valid @RequestBody EPlayRequest request, @PathVariable String userName) {
 		try {
 			// Get user name in the url path
