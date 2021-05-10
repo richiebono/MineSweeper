@@ -20,14 +20,14 @@ services:
     ports:
       - 8081:8081
       
-  # minesweeper-game-api:
-    # container_name: minesweeper-game-api
-    # image: minesweeper-game-api    
-    # build:
-      # context: .
-      # dockerfile: MineSweeper.Game.Api/Dockerfile
-    # ports:
-      # - 8082:8082
-    # depends_on:
-      # - mine-sweeper-db
+  minesweeper-game-api:
+    container_name: minesweeper-game-api
+    image: minesweeper-game-api    
+    build:
+      context: .
+      dockerfile: MineSweeper.Game.Api/Dockerfile
+    ports:
+      - 8082:8082
+    depends_on:
+      - mine-sweeper-db
    
