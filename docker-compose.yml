@@ -3,12 +3,14 @@ version: '3.1'
 
 services:
 
-  db:
+  mine-sweeper-db:
     image: postgres
+    container_name: mine-sweeper-db
     restart: always
     environment:
       POSTGRES_USER: adminsweeper
       POSTGRES_PASSWORD: adminSweeper@05052021
+      POSTGRES_DB: minesweeperdb
     ports:
       - 5432:5432
 
@@ -17,3 +19,15 @@ services:
     restart: always
     ports:
       - 8081:8081
+      
+  # minesweeper-game-api:
+    # container_name: minesweeper-game-api
+    # image: minesweeper-game-api    
+    # build:
+      # context: .
+      # dockerfile: MineSweeper.Game.Api/Dockerfile
+    # ports:
+      # - 8082:8082
+    # depends_on:
+      # - mine-sweeper-db
+   

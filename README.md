@@ -1,20 +1,26 @@
-# minesweeper-API
-API test
+# Introduction 
 
-We ask that you complete the following challenge to evaluate your development skills. Please use the programming language and framework discussed during your interview to accomplish the following task.
+# MineSweeper Projects
+User API
+Game API
+React Web Application 
+
+# Project Information Scope
+
+1 - We ask that you complete the following challenge to evaluate your development skills. Please use the programming language and framework discussed during your interview to accomplish the following task.
 
 PLEASE DO NOT FORK THE REPOSITORY. WE NEED A PUBLIC REPOSITORY FOR THE REVIEW. 
 
-## The Game
+2 - The Game
 Develop the classic game of [Minesweeper](https://en.wikipedia.org/wiki/Minesweeper_(video_game))
 
-## Show your work
+3 - Show your work
 
-1.  Create a Public repository ( please dont make a pull request, clone the private repository and create a new plublic one on your profile)
-2.  Commit each step of your process so we can follow your thought process.
+3.1.  Create a Public repository ( please dont make a pull request, clone the private repository and create a new plublic one on your profile)
+3.2.  Commit each step of your process so we can follow your thought process.
 
-## What to build
-The following is a list of items (prioritized from most important to least important) we wish to see:
+4 - What to build
+4.1. The following is a list of items (prioritized from most important to least important) we wish to see:
 * Design and implement  a documented RESTful API for the game (think of a mobile app for your API)
 * Implement an API client library for the API designed above. Ideally, in a different language, of your preference, to the one used for the API
 * When a cell with no adjacent mines is revealed, all adjacent squares will be revealed (and repeat)
@@ -26,14 +32,28 @@ The following is a list of items (prioritized from most important to least impor
 * Ability to select the game parameters: number of rows, columns, and mines
 * Ability to support multiple users/accounts
  
-## Deliverables we expect:
-* URL where the game can be accessed and played (use any platform of your preference: heroku.com, aws.amazon.com, etc)
-* Code in a public Github repo
-* README file with the decisions taken and important notes
+5 - Deliverables we expect:
+5.1 URL where the game can be accessed and played (use any platform of your preference: heroku.com, aws.amazon.com, etc)
+5.2 Code in a public Github repo
+5.3 README file with the decisions taken and important notes
 
-## Time Spent
-You need to fully complete the challenge. We suggest not spending more than 5 days total.  Please make commits as often as possible so we can see the time you spent and please do not make one commit.  We will evaluate the code and time spent.
- 
-What we want to see is how well you handle yourself given the time you spend on the problem, how you think, and how you prioritize when time is sufficient to solve everything.
+6 - Time Spent
+6.1 You need to fully complete the challenge. We suggest not spending more than 5 days total.  Please make commits as often as possible so we can see the time you spent and please do not make one commit.  We will evaluate the code and time spent.
+6.2 What we want to see is how well you handle yourself given the time you spend on the problem, how you think, and how you prioritize when time is sufficient to solve everything.
+6.3 Please email your solution as soon as you have completed the challenge or the time is up
 
-Please email your solution as soon as you have completed the challenge or the time is up
+# Getting Started
+
+1. Requirements 
+- Install Docker
+
+2. Container Orchestration
+- execute command "docker compose up" on preferred CMD
+- access the game API with link: http://localhost:8082/swagger-ui.html#/mine-sweeper-controller
+- access the Authentication API with link: http://localhost:8083/swagger-ui.html#/authentication-controller
+
+# Build and Test
+1. Access the video by YouTube: 
+
+# Reporting security issues and bugs
+Security issues and bugs should be reported privately, via email, to developer by email richiebono@gmail.com. You should receive a response within maximum 24 hours.

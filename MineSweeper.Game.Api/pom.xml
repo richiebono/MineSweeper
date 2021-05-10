@@ -8,10 +8,10 @@
 		<version>2.4.5</version>
 		<relativePath/>
 	</parent>
-	<groupId>MiniSeeper</groupId>
-	<artifactId>MiniSeeper-Service</artifactId>
+	<groupId>MineSweeper-Game-Api</groupId>
+	<artifactId>MineSweeper-Game-Api</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>MiniSeeper Service</name>
+	<name>MineSweeper-Game-Api</name>
 	<description>Minesweeper API</description>
 
 	<properties>
