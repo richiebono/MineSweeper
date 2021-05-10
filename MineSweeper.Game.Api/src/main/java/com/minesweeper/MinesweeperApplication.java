@@ -1,7 +1,9 @@
 package com.minesweeper;
 
 import com.minesweeper.application.interfaces.IMineSweeperAppService;
+import com.minesweeper.application.interfaces.ITokenAppService;
 import com.minesweeper.application.services.MineSweeperAppService;
+import com.minesweeper.application.services.TokenAppService;
 import com.minesweeper.domain.interfaces.IMineSweeperService;
 import com.minesweeper.domain.services.MineSweeperService;
 import org.modelmapper.ModelMapper;
@@ -16,7 +18,6 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @SpringBootApplication
 @EnableSpringDataWebSupport
 @EnableCaching
-@EnableSwagger2
 public class MinesweeperApplication {
 
 	public static void main(String[] args) {
@@ -30,9 +31,9 @@ public class MinesweeperApplication {
 
 
 	@Bean
-	public IMineSweeperAppService mineSweeperAppService() {
-		return new MineSweeperAppService();
-	}
+	public IMineSweeperAppService mineSweeperAppService() { return new MineSweeperAppService();	}
 
+	@Bean
+	public ITokenAppService tokenAppService() { return new TokenAppService();	}
 
 }

@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 
+import javax.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -25,6 +26,7 @@ import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
 @Builder
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name="Games")
 public class Game {
 
 	@Id

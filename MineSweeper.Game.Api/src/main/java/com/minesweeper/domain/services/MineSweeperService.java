@@ -76,10 +76,9 @@ public class MineSweeperService implements IMineSweeperService {
   @Override
   public Page<GameBean> getGames(String username, Pageable pageable) {
     log.info("[Minesweeper Service] - Finding a board game for username={}", username);
-    return gameRepository.findByUserNameAndStatePageable(username, EGameStates.ACTIVE, pageable)
+    return gameRepository.findByUserNameAndState(username, EGameStates.ACTIVE, pageable)
         .map(Game::new).map(game -> modelMapper.map(game, GameBean.class));
-    //.orElseThrow(() -> new MinesweeperException(String.format("[Minesweeper Service] - There's no active game for username=%s", username)));
-  };
+  }
 
   @Override
   public GameBean play(String username, EPlayRequest request) {
