@@ -4,6 +4,8 @@ import com.minesweeper.domain.entity.BoardRequest;
 import com.minesweeper.domain.entity.GameBean;
 import com.minesweeper.domain.enums.EMarkType;
 import com.minesweeper.domain.enums.EPlayRequest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 
 public interface IMineSweeperService {
 
@@ -22,7 +24,18 @@ public interface IMineSweeperService {
 	 * @param username
 	 * @return
 	 */
+
 	GameBean getGame(String username);
+
+	/**
+	 * Obtain all games by username
+	 *
+	 * @param username
+	 * @return
+	 */
+	Page<GameBean> getGames(String username, Pageable pageable);
+
+
 
 	/**
 	 * Execute the play of the user.

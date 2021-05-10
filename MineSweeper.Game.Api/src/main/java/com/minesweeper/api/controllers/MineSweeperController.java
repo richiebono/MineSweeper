@@ -7,6 +7,7 @@ import javax.validation.Valid;
 import lombok.extern.slf4j.Slf4j;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.minesweeper.domain.exception.MinesweeperException;
@@ -62,10 +64,21 @@ public class MineSweeperController {
 	}
 
 	@GetMapping(value="/game/{userName}")
-	public ResponseEntity getGames(@PathVariable String userName) {
+	public ResponseEntity getGame(@PathVariable String userName) {
 		try {
 			// Get a stores board game for an user.
 			return ResponseEntity.ok(mineSweeperAppService.getGame(userName));
+		} catch (MinesweeperException e) {
+			log.error("[Minesweeper] Failed to get a persisted board game for username={}, exception={}", userName, e);
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+		}
+	}
+
+	@GetMapping(value="/games/{userName}")
+	public ResponseEntity getGames(@RequestParam @PathVariable String userName, @RequestParam(required = false) Pageable pageable) {
+		try {
+			// Get a stores board game for an user.
+			return ResponseEntity.ok(mineSweeperAppService.getGames(userName, pageable));
 		} catch (MinesweeperException e) {
 			log.error("[Minesweeper] Failed to get a persisted board game for username={}, exception={}", userName, e);
 			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());

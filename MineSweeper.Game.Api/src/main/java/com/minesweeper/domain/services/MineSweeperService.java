@@ -14,6 +14,8 @@ import lombok.extern.slf4j.Slf4j;
 
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.minesweeper.domain.entity.BoardRequest;
@@ -72,12 +74,20 @@ public class MineSweeperService implements IMineSweeperService {
   }
 
   @Override
+  public Page<GameBean> getGames(String username, Pageable pageable) {
+    log.info("[Minesweeper Service] - Finding a board game for username={}", username);
+    return gameRepository.findByUserNameAndStatePageable(username, EGameStates.ACTIVE, pageable)
+        .map(Game::new).map(game -> modelMapper.map(game, GameBean.class));
+    //.orElseThrow(() -> new MinesweeperException(String.format("[Minesweeper Service] - There's no active game for username=%s", username)));
+  };
+
+  @Override
   public GameBean play(String username, EPlayRequest request) {
     // Getting the play of the user
     int row = request.getRow();
     int column = request.getColumn();
 
-    // Getting the persisted board game if it was saved.
+    // Getting the persisted board game
     Optional<Game> game = gameRepository.findByUserNameAndState(username, EGameStates.ACTIVE);
 
     if (!game.isPresent()) {

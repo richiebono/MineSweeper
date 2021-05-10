@@ -60,4 +60,12 @@ public class Game {
 		this.redFlag = false;
 		this.questionMark = false;
 	}
+
+  public Game(Game game) {
+		this.mines = game.mines;
+		this.userName = game.userName;
+		this.state = game.state;
+		this.redFlag = game.redFlag;
+		this.questionMark = game.questionMark;
+  }
 }
