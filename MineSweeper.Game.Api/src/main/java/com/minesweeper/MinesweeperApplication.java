@@ -18,6 +18,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @SpringBootApplication
 @EnableSpringDataWebSupport
 @EnableCaching
+@EnableSwagger2
 public class MinesweeperApplication {
 
 	public static void main(String[] args) {

@@ -1,6 +1,5 @@
 package com.minesweeper.api.controllers;
 
-import com.minesweeper.application.interfaces.IMineSweeperAppService;
 import com.minesweeper.application.interfaces.ITokenAppService;
 import com.minesweeper.application.models.Login;
 import com.minesweeper.application.models.Token;

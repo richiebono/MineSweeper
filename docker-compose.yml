@@ -14,14 +14,15 @@ services:
     ports:
       - 5432:5432
 
-  adminer:
+  mine-sweeper-adminer:
+    container_name: mine-sweeper-adminer
     image: adminer
     restart: always
     ports:
       - 8080:8080
       
-  minesweeper-game-api:
-    container_name: minesweeper-game-api
+  mine-sweeper-game-api:
+    container_name: mine-sweeper-game-api
     image: minesweeper-game-api    
     build:
       context: .
