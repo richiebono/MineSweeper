@@ -47,10 +47,13 @@ Develop the classic game of [Minesweeper](https://en.wikipedia.org/wiki/Mineswee
 1. Requirements 
 - Install Docker
 
-2. Container Orchestration
+2. Container Orchestration Server and MicroServices
 - execute command "docker compose up" on preferred CMD
-- access the game API with link: http://localhost:8082/swagger-ui.html#/mine-sweeper-controller
-- access the Authentication API with link: http://localhost:8083/swagger-ui.html#/authentication-controller
+- access the database manager adminer with link: http://localhost:8080
+- access the Account Mananger API with link: http://localhost:8081/swagger-ui.html
+- access the game API with link: http://localhost:8082/swagger-ui.html
+- access the monitoring server with link: http://localhost:8083
+- access the db server with link: http://localhost:5432
 
 # Build and Test
 1. Access the video by YouTube: 

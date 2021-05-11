@@ -31,4 +31,18 @@ services:
       - 8082:8082
     depends_on:
       - mine-sweeper-db
+      
+  mine-sweeper-monitoring:
+    container_name: mine-sweeper-monitoring
+    image: minesweeper-monitoring 
+    build:
+      context: .
+      dockerfile: MineSweeper.Monitoring/Dockerfile
+    ports:
+      - 8083:8083
+    depends_on:
+      - mine-sweeper-game-api
+      
+      
+      
    
