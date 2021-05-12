@@ -1,0 +1,95 @@
+# Use postgres/example user/password credentials
+version: '3.1'
+
+services:
+
+  mine-sweeper-db:
+    image: postgres
+    container_name: mine-sweeper-db
+    restart: always
+    environment:
+      POSTGRES_USER: ${MINESWEEPER_USER_DB}
+      POSTGRES_PASSWORD: ${MINESWEEPER_PASSWORD_DB}
+      POSTGRES_DB: ${MINESWEEPER_DB}
+    ports:
+      - 5432:5432
+
+  mine-sweeper-web:
+    container_name: mine-sweeper-web
+    image: minesweeper-game-api 
+    environment:
+      MINESWEEPER_USER_DB: ${MINESWEEPER_USER_DB}
+      MINESWEEPER_PASSWORD_DB: ${MINESWEEPER_PASSWORD_DB}
+      MINESWEEPER_DB: ${MINESWEEPER_DB}
+      MINESWEEPER_SECRET_JWT: ${MINESWEEPER_SECRET_JWT}
+      MINESWEEPER_MONITORING_SERVER: ${MINESWEEPER_MONITORING_SERVER}    
+    build:
+      context: .
+      dockerfile: MineSweeper.Web.React/Dockerfile
+    ports:
+      - 5000:5000
+    env_file: .env
+    volumes:
+      - ./webapp:/opt/webapp
+    depends_on:
+      - mine-sweeper-db  
+
+  mine-sweeper-adminer:
+    container_name: mine-sweeper-adminer
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
+          
+  mine-sweeper-game-api:
+    container_name: mine-sweeper-game-api
+    image: minesweeper-game-api 
+    environment:
+      MINESWEEPER_USER_DB: ${MINESWEEPER_USER_DB}
+      MINESWEEPER_PASSWORD_DB: ${MINESWEEPER_PASSWORD_DB}
+      MINESWEEPER_DB: ${MINESWEEPER_DB}
+      MINESWEEPER_SECRET_JWT: ${MINESWEEPER_SECRET_JWT}
+      MINESWEEPER_MONITORING_SERVER: ${MINESWEEPER_MONITORING_SERVER}
+    build:
+      context: .
+      dockerfile: MineSweeper.Game.Api/Dockerfile
+    ports:
+      - 8082:8082
+    env_file: .env
+    depends_on:
+      - mine-sweeper-db
+            
+  mine-sweeper-authentication-api:
+    container_name: mine-sweeper-authentication-api
+    image: mine-sweeper-authentication-api 
+    environment:
+      MINESWEEPER_USER_DB: ${MINESWEEPER_USER_DB}
+      MINESWEEPER_PASSWORD_DB: ${MINESWEEPER_PASSWORD_DB}
+      MINESWEEPER_DB: ${MINESWEEPER_DB}
+      MINESWEEPER_SECRET_JWT: ${MINESWEEPER_SECRET_JWT}
+      MINESWEEPER_MONITORING_SERVER: ${MINESWEEPER_MONITORING_SERVER}    
+    build:
+      context: .
+      dockerfile: MineSweeper.Authentication.Api/Dockerfile
+    ports:
+      - 8082:8082
+    env_file: .env
+    depends_on:
+      - mine-sweeper-db
+      
+   mine-sweeper-monitoring:
+    container_name: mine-sweeper-monitoring
+    image: minesweeper-monitoring 
+    build:
+      context: .
+      dockerfile: MineSweeper.Monitoring/Dockerfile
+    ports:
+      - 8083:8083
+    env_file: .env
+    depends_on:      
+      - mine-sweeper-authentication-api
+      - mine-sweeper-game-api 
+      
+      
+      
+   

@@ -17,9 +17,11 @@ Develop the classic game of [Minesweeper](https://en.wikipedia.org/wiki/Mineswee
 3 - Show your work
 
 3.1.  Create a Public repository ( please dont make a pull request, clone the private repository and create a new plublic one on your profile)
+
 3.2.  Commit each step of your process so we can follow your thought process.
 
 4 - What to build
+
 4.1. The following is a list of items (prioritized from most important to least important) we wish to see:
 * Design and implement  a documented RESTful API for the game (think of a mobile app for your API)
 * Implement an API client library for the API designed above. Ideally, in a different language, of your preference, to the one used for the API
@@ -42,13 +44,28 @@ Develop the classic game of [Minesweeper](https://en.wikipedia.org/wiki/Mineswee
 6.2 What we want to see is how well you handle yourself given the time you spend on the problem, how you think, and how you prioritize when time is sufficient to solve everything.
 6.3 Please email your solution as soon as you have completed the challenge or the time is up
 
-# Getting Started
+# Getting Started Development Environment
 
 1. Requirements 
 - Install Docker
 
-2. Container Orchestration Server and MicroServices
+2. Container Orchestration Server and MicroServices 
 - execute command "docker compose up" on preferred CMD
+- access the web application with link: http://localhost:3000
+- access the database manager adminer with link: http://localhost:8080
+- access the Account Mananger API with link: http://localhost:8081/swagger-ui.html
+- access the game API with link: http://localhost:8082/swagger-ui.html
+- access the monitoring server with link: http://localhost:8083
+- access the db server with link: http://localhost:5432
+
+# Getting Started Production Environment
+
+1. Requirements 
+- Install Docker
+
+2. Container Orchestration Server and MicroServices 
+- execute command "docker compose up" on preferred CMD
+- access the web application with link: http://localhost:5000
 - access the database manager adminer with link: http://localhost:8080
 - access the Account Mananger API with link: http://localhost:8081/swagger-ui.html
 - access the game API with link: http://localhost:8082/swagger-ui.html

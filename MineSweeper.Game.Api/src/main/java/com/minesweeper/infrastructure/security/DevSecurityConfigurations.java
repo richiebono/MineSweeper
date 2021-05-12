@@ -20,43 +20,18 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 @EnableWebSecurity
 @Configuration
-@Profile("prod")
-public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
+@Profile("dev")
+public class DevSecurityConfigurations extends WebSecurityConfigurerAdapter {
 
-	@Autowired
-	private AuthenticationService autenticacaoService;
-	
-	@Autowired
-	private TokenService tokenService;
-	
-	@Autowired
-	private UserRepository userRepository;
-	
-	@Override
-	@Bean
-	protected AuthenticationManager authenticationManager() throws Exception {
-		return super.authenticationManager();
-	}
-	
-	//Authentication settings
-	@Override
-	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.userDetailsService(autenticacaoService).passwordEncoder(new BCryptPasswordEncoder());
-	}
-	
 	//Authorization settings
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
-		.antMatchers(HttpMethod.POST, "/authentication").permitAll()
-		.antMatchers(HttpMethod.GET, "/actuator/**").permitAll()
-		.anyRequest().authenticated()
-		.and().csrf().disable()
-		.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS)
-		.and().addFilterBefore(new AuthenticationTokenFilter(tokenService, userRepository), UsernamePasswordAuthenticationFilter.class);
+		.antMatchers(HttpMethod.GET, "/**").permitAll()
+		.and().csrf().disable();
+
 	}
-	
-	
+
 	//Configurations of statistical resources (js, css, images, etc.)
 	@Override
 	public void configure(WebSecurity web) throws Exception {
