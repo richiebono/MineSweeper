@@ -89,7 +89,3 @@ services:
     depends_on:      
       - mine-sweeper-authentication-api
       - mine-sweeper-game-api 
-      
-      
-      
-   
