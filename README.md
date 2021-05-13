@@ -61,16 +61,16 @@ Develop the classic game of [Minesweeper](https://en.wikipedia.org/wiki/Mineswee
 # Getting Started Production Environment
 
 1. Requirements 
-- Install Docker
+- Heroku Account
 
 2. Container Orchestration Server and MicroServices 
 - execute command "docker compose up" on preferred CMD
-- access the web application with link: http://localhost:5000
-- access the database manager adminer with link: http://localhost:8080
-- access the Account Mananger API with link: http://localhost:8081/swagger-ui.html
-- access the game API with link: http://localhost:8082/swagger-ui.html
-- access the monitoring server with link: http://localhost:8083
-- access the db server with link: http://localhost:5432
+- access the web application with link: https://bono-minesweeper-web.herokuapp.com
+- access the database manager adminer with link: https://bono-minesweeper-adminer.herokuapp.com
+- access the Account Mananger API with link: https://bono-minesweeper-Authentication-api.herokuapp.com 
+- access the game API with link: https://bono-minesweeper-game-api.herokuapp.com
+- access the monitoring server with link: https://bono-minesweeper-monitoring.herokuapp.com
+- access the db server with link: https://bono-minesweeper-db.herokuapp.com
 
 # Build and Test
 1. Access the video by YouTube: 
