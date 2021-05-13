@@ -20,7 +20,19 @@ services:
     restart: always
     ports:
       - 8080:8080
-      
+    
+  mine-sweeper-authentication-api:
+    container_name: mine-sweeper-authentication-api
+    image: mine-sweeper-authentication-api        
+    build:
+      context: .
+      dockerfile: MineSweeper.Authentication.Api/Dockerfile
+    ports:
+      - 8081:8081
+    env_file: .env
+    depends_on:
+      - mine-sweeper-db
+    
   mine-sweeper-game-api:
     container_name: mine-sweeper-game-api
     image: minesweeper-game-api    
