@@ -23,7 +23,8 @@ services:
     
   mine-sweeper-authentication-api:
     container_name: mine-sweeper-authentication-api
-    image: mine-sweeper-authentication-api  
+    image: mine-sweeper-authentication-api 
+    env_file: .env 
     environment:
       SPRING_PROFILES_ACTIVE: ${SPRING_PROFILES_ACTIVE}    
     build:
@@ -31,13 +32,14 @@ services:
       dockerfile: MineSweeper.Authentication.Api/Dockerfile
     ports:
       - 8081:8081
-    env_file: .env
+    
     depends_on:
       - mine-sweeper-db
     
   mine-sweeper-game-api:
     container_name: mine-sweeper-game-api
-    image: minesweeper-game-api  
+    image: mine-sweeper-game-api
+    env_file: .env
     environment:
       SPRING_PROFILES_ACTIVE: ${SPRING_PROFILES_ACTIVE}        
     build:
@@ -51,7 +53,7 @@ services:
       
   mine-sweeper-monitoring:
     container_name: mine-sweeper-monitoring
-    image: minesweeper-monitoring 
+    image: mine-sweeper-monitoring
     build:
       context: .
       dockerfile: MineSweeper.Monitoring/Dockerfile
@@ -61,6 +63,23 @@ services:
       - mine-sweeper-game-api
       - mine-sweeper-authentication-api
       
-      
+  mine-sweeper-web:
+    container_name: mine-sweeper-web
+    image: mine-sweeper-web
+    env_file: .env
+    environment:
+      MINESWEEPER_AUTHENTICATION_URL: ${MINESWEEPER_AUTHENTICATION_URL}      
+      MINESWEEPER_GAME_URL: ${MINESWEEPER_GAME_URL}
+    build:
+      context: .
+      dockerfile: MineSweeper.Web.React/Dockerfile
+    ports:
+      - 3000:3000
+    volumes:
+      - '.:/app'
+      - '/app/node_modules'        
+    depends_on: 
+      - mine-sweeper-authentication-api
+      - mine-sweeper-game-api    
       
    

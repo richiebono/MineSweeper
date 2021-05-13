@@ -50,7 +50,7 @@ Develop the classic game of [Minesweeper](https://en.wikipedia.org/wiki/Mineswee
 - Install Docker
 
 2. Container Orchestration Server and MicroServices 
-- execute command "docker compose up" on preferred CMD
+- execute command "docker-compose up -d --build" on preferred CMD
 - access the web application with link: http://localhost:3000
 - access the database manager adminer with link: http://localhost:8080
 - access the Account Mananger API with link: http://localhost:8081/swagger-ui.html
@@ -64,7 +64,7 @@ Develop the classic game of [Minesweeper](https://en.wikipedia.org/wiki/Mineswee
 - Heroku Account
 
 2. Container Orchestration Server and MicroServices 
-- execute command "docker compose up" on preferred CMD
+- execute command "docker-compose -f docker-compose-prod.yml up -d --build" on preferred CMD
 - access the web application with link: https://bono-minesweeper-web.herokuapp.com
 - access the database manager adminer with link: https://bono-minesweeper-adminer.herokuapp.com
 - access the Account Mananger API with link: https://bono-minesweeper-Authentication-api.herokuapp.com 
