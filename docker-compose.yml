@@ -23,7 +23,9 @@ services:
     
   mine-sweeper-authentication-api:
     container_name: mine-sweeper-authentication-api
-    image: mine-sweeper-authentication-api        
+    image: mine-sweeper-authentication-api  
+    environment:
+      SPRING_PROFILES_ACTIVE: ${SPRING_PROFILES_ACTIVE}    
     build:
       context: .
       dockerfile: MineSweeper.Authentication.Api/Dockerfile
@@ -35,7 +37,9 @@ services:
     
   mine-sweeper-game-api:
     container_name: mine-sweeper-game-api
-    image: minesweeper-game-api    
+    image: minesweeper-game-api  
+    environment:
+      SPRING_PROFILES_ACTIVE: ${SPRING_PROFILES_ACTIVE}        
     build:
       context: .
       dockerfile: MineSweeper.Game.Api/Dockerfile
@@ -43,6 +47,7 @@ services:
       - 8082:8082
     depends_on:
       - mine-sweeper-db
+      - mine-sweeper-authentication-api
       
   mine-sweeper-monitoring:
     container_name: mine-sweeper-monitoring
@@ -54,6 +59,7 @@ services:
       - 8083:8083
     depends_on:
       - mine-sweeper-game-api
+      - mine-sweeper-authentication-api
       
       
       

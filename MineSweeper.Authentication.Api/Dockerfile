@@ -7,4 +7,4 @@ COPY ./MineSweeper.Authentication.Api ./
 RUN mvn clean package
  
 # set the startup command to execute the jar
-CMD ["java", "-jar", "MineSweeper-Authentication-Api.jar"]
+CMD ["java", "-jar", "target/MineSweeper-Authentication-Api.jar"]

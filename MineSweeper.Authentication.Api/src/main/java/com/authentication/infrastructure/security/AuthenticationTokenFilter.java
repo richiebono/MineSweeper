@@ -2,9 +2,8 @@ package com.authentication.infrastructure.security;
 
 
 import com.authentication.domain.entity.User;
+import com.authentication.domain.services.TokenService;
 import com.authentication.infrastructure.repository.UserRepository;
-import com.minesweeper.domain.services.TokenService;
-
 import java.io.IOException;
 
 import javax.servlet.FilterChain;

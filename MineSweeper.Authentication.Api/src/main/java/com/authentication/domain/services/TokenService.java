@@ -1,7 +1,7 @@
-package com.minesweeper.domain.services;
+package com.authentication.domain.services;
 
-import com.minesweeper.domain.entity.User;
-import com.minesweeper.domain.interfaces.ITokenService;
+import com.authentication.domain.entity.User;
+import com.authentication.domain.interfaces.ITokenService;
 import java.util.Date;
 
 import lombok.extern.slf4j.Slf4j;

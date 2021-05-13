@@ -7,4 +7,4 @@ COPY ./MineSweeper.Monitoring ./
 RUN mvn clean package
  
 # set the startup command to execute the jar
-CMD ["java", "-jar", "MineSweeper-Monitoring.jar"]
+CMD ["java", "-jar", "target/MineSweeper-Monitoring.jar"]

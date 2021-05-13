@@ -1,6 +1,6 @@
-package com.minesweeper.infrastructure.swagger;
+package com.authentication.infrastructure.swagger;
 
-import com.minesweeper.domain.entity.User;
+import com.authentication.domain.entity.User;
 import java.util.Arrays;
 import java.util.Collections;
 
@@ -42,7 +42,7 @@ public class SwaggerConfig {
 
 	private ApiInfo apiInfo() {
 		return new ApiInfo(
-				"MineSweeper",
+				"MineSweeper Authentication Api",
 				"Deviget Challenge",
 				"API V1",
 				null,

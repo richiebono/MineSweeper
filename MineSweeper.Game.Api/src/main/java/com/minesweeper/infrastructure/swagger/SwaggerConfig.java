@@ -42,7 +42,7 @@ public class SwaggerConfig {
 
 	private ApiInfo apiInfo() {
 		return new ApiInfo(
-				"MineSweeper",
+				"MineSweeper Game Api",
 				"Deviget Challenge",
 				"API V1",
 				null,

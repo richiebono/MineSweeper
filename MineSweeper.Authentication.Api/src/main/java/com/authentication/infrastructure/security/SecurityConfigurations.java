@@ -2,8 +2,8 @@ package com.authentication.infrastructure.security;
 
 
 import com.authentication.domain.services.AuthenticationService;
+import com.authentication.domain.services.TokenService;
 import com.authentication.infrastructure.repository.UserRepository;
-import com.minesweeper.domain.services.TokenService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -21,7 +21,6 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 
 @EnableWebSecurity
 @Configuration
-@Profile("prod")
 public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
 
 	@Autowired
@@ -49,7 +48,7 @@ public class SecurityConfigurations extends WebSecurityConfigurerAdapter {
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
-		.antMatchers(HttpMethod.POST, "/authentication").permitAll()
+		.antMatchers(HttpMethod.POST, "/authentication/**").permitAll()
 		.antMatchers(HttpMethod.GET, "/actuator/**").permitAll()
 		.anyRequest().authenticated()
 		.and().csrf().disable()

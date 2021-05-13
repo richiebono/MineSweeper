@@ -7,4 +7,4 @@ COPY ./MineSweeper.Game.Api ./
 RUN mvn clean package
  
 # set the startup command to execute the jar
-CMD ["java", "-jar", "MineSweeper-Game-Api.jar"]
+CMD ["java", "-jar", "target/MineSweeper-Game-Api.jar"]

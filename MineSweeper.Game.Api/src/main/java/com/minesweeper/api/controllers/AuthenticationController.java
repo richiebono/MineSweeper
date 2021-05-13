@@ -23,7 +23,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/authentication/v1")
 @Validated
 @Slf4j
-@Profile("prod")
 public class AuthenticationController {
 	
 	@Autowired
