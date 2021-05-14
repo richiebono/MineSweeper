@@ -124,13 +124,15 @@ Develop the classic game of [Minesweeper](https://en.wikipedia.org/wiki/Mineswee
 	$ gpg --verify ecs-cli.asc 'C:\Program Files\Amazon\ECSCLI\ecs-cli.exe'
 	
   Expected output:
-	gpg: Signature made Tue Apr  3 13:29:30 2018 PDT
-	gpg:                using RSA key DE3CBD61ADAF8B8E
-	gpg: Good signature from "Amazon ECS <ecs-security@amazon.com>" [unknown]
-	gpg: WARNING: This key is not certified with a trusted signature!
-	gpg:          There is no indication that the signature belongs to the owner.
-	Primary key fingerprint: F34C 3DDA E729 26B0 79BE  AEC6 BCE9 D9A4 2D51 784F
-		 Subkey fingerprint: EB3D F841 E2C9 212A 2BD4  2232 DE3C BD61 ADAF 8B8E
+	
+	$
+		gpg: Signature made Tue Apr  3 13:29:30 2018 PDT
+		gpg:                using RSA key DE3CBD61ADAF8B8E
+		gpg: Good signature from "Amazon ECS <ecs-security@amazon.com>" [unknown]
+		gpg: WARNING: This key is not certified with a trusted signature!
+		gpg:          There is no indication that the signature belongs to the owner.
+		Primary key fingerprint: F34C 3DDA E729 26B0 79BE  AEC6 BCE9 D9A4 2D51 784F
+			 Subkey fingerprint: EB3D F841 E2C9 212A 2BD4  2232 DE3C BD61 ADAF 8B8E
 
 
  3. Step 3: Apply Execute Permissions to the Binary
