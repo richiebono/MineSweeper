@@ -170,10 +170,8 @@ Develop the classic game of [Minesweeper](https://en.wikipedia.org/wiki/Mineswee
 	$ export AWS_DEFAULT_REGION=us-west-2
  
   The following script configure an ECS-profile called tutorial for a cluster named minesweeper-cluster on the us-west-2 region with a default launch type based on EC2 instances:
-	<br>
-	configure.sh
-	<br>
-	[Command]
+	
+	[configure.sh]
 	$  #!/bin/bash
 	  set -e
 	  PROFILE_NAME=minesweeper
@@ -196,10 +194,8 @@ Develop the classic game of [Minesweeper](https://en.wikipedia.org/wiki/Mineswee
  aws ec2 create-key-pair --key-name minesweeper-cluster --query 'KeyMaterial' --output text > ~/.ssh/minesweeper-cluster.pem
 
  reation of the Cluster minesweeper-cluster with 2 ec2-instances t3.medium  
-	<br>
-	create-cluster.sh
-	<br>
-	[Command]
+	
+	[create-cluster.sh]
 	$ #!/bin/bash
 		KEY_PAIR=minesweeper-cluster
 			ecs-cli up \
