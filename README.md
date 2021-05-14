@@ -170,8 +170,9 @@ Develop the classic game of [Minesweeper](https://en.wikipedia.org/wiki/Mineswee
 	$ export AWS_DEFAULT_REGION=us-west-2
  
   The following script configure an ECS-profile called tutorial for a cluster named minesweeper-cluster on the us-west-2 region with a default launch type based on EC2 instances:
-	
-	[configure.sh]
+	<br>
+	#configure.sh
+	[Command]
 	$  #!/bin/bash
 	  set -e
 	  PROFILE_NAME=minesweeper
@@ -194,8 +195,9 @@ Develop the classic game of [Minesweeper](https://en.wikipedia.org/wiki/Mineswee
  aws ec2 create-key-pair --key-name minesweeper-cluster --query 'KeyMaterial' --output text > ~/.ssh/minesweeper-cluster.pem
 
  reation of the Cluster minesweeper-cluster with 2 ec2-instances t3.medium  
-	
-	[create-cluster.sh]
+	<br>
+	#create-cluster.sh
+	[Command]
 	$ #!/bin/bash
 		KEY_PAIR=minesweeper-cluster
 			ecs-cli up \
@@ -219,15 +221,15 @@ Develop the classic game of [Minesweeper](https://en.wikipedia.org/wiki/Mineswee
  - 1 ecs cluster
  
  This stack can best tested locally
- <br>
+	[Command]
 	$ docker-compose up
 	
  We can now deploy this stack on AWS ECS:
- <br>
+	[Command]
 	$ ecs-cli compose --project-name minesweeper  --file docker-compose.yml --debug service up  --deployment-max-percent 100 --deployment-min-healthy-percent 0 --region us-est-2 --ecs-profile minesweeper --cluster-config minesweeper
 	
  To verify that the service is running we can use this command:
- <br>
+	[Command]
 	$ ecs-cli ps
 	
 # Reporting security issues and bugs
