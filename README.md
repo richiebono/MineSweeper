@@ -60,7 +60,7 @@ Develop the classic game of [Minesweeper](https://en.wikipedia.org/wiki/Mineswee
 
 # Getting Started Production Environment
 	
-Step 1: Download the Amazon ECS CLI
+## 1. Step 1: Download the Amazon ECS CLI
   
  1.1. For macOS:
 
@@ -77,7 +77,7 @@ Step 1: Download the Amazon ECS CLI
 	$ New-Item -Path 'C:\Program Files\Amazon\ECSCLI' -ItemType Directory
 	$ Invoke-WebRequest -OutFile 'C:\Program Files\Amazon\ECSCLI\ecs-cli.exe' https://amazon-ecs-cli.s3.amazonaws.com/ecs-cli-windows-amd64-latest.exe
 	
- 2. Step 2: Verify the Amazon ECS CLI using PGP signatures
+## 2. Step 2: Verify the Amazon ECS CLI using PGP signatures
 
  The Amazon ECS CLI executables are cryptographically signed using PGP signatures. The PGP signatures can be used to verify the validity of the Amazon ECS CLI executable. Use the following steps to verify the signatures using the GnuPG tool.
   <br>
@@ -137,7 +137,7 @@ Step 1: Download the Amazon ECS CLI
 			 Subkey fingerprint: EB3D F841 E2C9 212A 2BD4  2232 DE3C BD61 ADAF 8B8E
 
 
- 3. Step 3: Apply Execute Permissions to the Binary
+## 3. Step 3: Apply Execute Permissions to the Binary
 
   Apply execute permissions to the binary.
 
@@ -156,7 +156,7 @@ Step 1: Download the Amazon ECS CLI
   Note
   Once the PATH variable is set, the Amazon ECS CLI can be used from either Windows PowerShell or the command prompt.
 
- 4. Step 4: Complete the Installation
+ ## 4. Step 4: Complete the Installation
   
   Verify that the CLI is working properly.
 	<br>
@@ -164,7 +164,7 @@ Step 1: Download the Amazon ECS CLI
 	
   Proceed to Configuring the Amazon ECS CLI.
 
- 5. Configure ecs-cli
+## 5. Configure ecs-cli
 
   5.1. Prerequisite
 
@@ -190,8 +190,8 @@ Step 1: Download the Amazon ECS CLI
       LAUNCH_TYPE=EC2
       ecs-cli configure profile --profile-name "$PROFILE_NAME" --access-key "$AWS_ACCESS_KEY_ID" --secret-key "$AWS_SECRET_ACCESS_KEY"
       ecs-cli configure --cluster "$CLUSTER_NAME" --default-launch-type "$LAUNCH_TYPE" --region "$REGION" --config-name "$PROFILE_NAME"
-  
-6. Creation of an ECS-Cluster 🚀
+
+## 6. Creation of an ECS-Cluster 🚀
 	
  We will create an ECS-Cluster based on ec2 instance.
  ECS allows 2 launch types EC2 and FARGATE
