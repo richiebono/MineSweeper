@@ -47,9 +47,9 @@ Develop the classic game of [Minesweeper](https://en.wikipedia.org/wiki/Mineswee
 # Getting Started Development Environment
 
 1. Requirements 
-- Install Docker
-  [For macOS](https://docs.docker.com/docker-for-mac/install/)
-  [For Linux systems](https://docs.docker.com/engine/install/ubuntu/)
+- Install Docker:<br>
+  [For macOS](https://docs.docker.com/docker-for-mac/install/)<br>
+  [For Linux systems](https://docs.docker.com/engine/install/ubuntu/)<br>
   [For Windows systems](https://docs.docker.com/docker-for-windows/install/)
 
 ## 1. Local Development with Docker Compose
