@@ -81,15 +81,15 @@ Develop the classic game of [Minesweeper](https://en.wikipedia.org/wiki/Mineswee
 
  The Amazon ECS CLI executables are cryptographically signed using PGP signatures. The PGP signatures can be used to verify the validity of the Amazon ECS CLI executable. Use the following steps to verify the signatures using the GnuPG tool.
   <br>
-  Download and install GnuPG. For more information, see the [GnuPG website] [Local Development with Docker Compose](https://www.gnupg.org/).
+  Download and install GnuPG. For more information, see the [GnuPG website](https://www.gnupg.org/).
 
-  For macOS, we recommend using Homebrew. Install Homebrew using the instructions from their website. For more information, see [Homebrew] (https://brew.sh/). After Homebrew is installed, use the following command from your macOS terminal.
+  For macOS, we recommend using Homebrew. Install Homebrew using the instructions from their website. For more information, see [Homebrew](https://brew.sh/). After Homebrew is installed, use the following command from your macOS terminal.
 
 	$ brew install gnupg
 	
   For Linux systems, install gpg using the package manager on your flavor of Linux.
 
-  For Windows systems, download and use the Windows simple installer from the GnuPG website. For more information, see [GnuPG Download] (https://www.gnupg.org/download/index.html).
+  For Windows systems, download and use the Windows simple installer from the GnuPG website. For more information, see [GnuPG Download](https://www.gnupg.org/download/index.html).
 
  <br>
  2.2. Retrieve the Amazon ECS PGP public key. You can use a command to do this or manually create the key and then import it.
@@ -171,7 +171,7 @@ Develop the classic game of [Minesweeper](https://en.wikipedia.org/wiki/Mineswee
   AWS CLI v2 must be installed.
   *You need to have an AWS_ACCESS_KEY_ID / AWS_SECRET_ACCESS_KEY with administrative privileges
 	 
-  To create your AWS_ACCESS_KEY_ID you can read this [documentation] (https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html#Using_CreateAccessKey)
+  To create your AWS_ACCESS_KEY_ID you can read this [documentation](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html#Using_CreateAccessKey)
  
   Your environment variables must be configured with a correct pair of AWS_ACCESS_KEY_ID / AWS_SECRET_ACCESS_KEY
   
