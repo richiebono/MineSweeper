@@ -62,7 +62,7 @@ Develop the classic game of [Minesweeper](https://en.wikipedia.org/wiki/Mineswee
 	
  1. Step 1: Download the Amazon ECS CLI
   
-  *For macOS:
+  -For macOS:
 
 	$ sudo curl -Lo /usr/local/bin/ecs-cli https://amazon-ecs-cli.s3.amazonaws.com/ecs-cli-darwin-amd64-latest
 
