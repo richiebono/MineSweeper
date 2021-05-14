@@ -48,6 +48,9 @@ Develop the classic game of [Minesweeper](https://en.wikipedia.org/wiki/Mineswee
 
 1. Requirements 
 - Install Docker
+  [For macOS](https://docs.docker.com/docker-for-mac/install/)
+  [For Linux systems](https://docs.docker.com/engine/install/ubuntu/)
+  [For Windows systems](https://docs.docker.com/docker-for-windows/install/)
 
 ## 1. Local Development with Docker Compose
     
@@ -113,6 +116,7 @@ Develop the classic game of [Minesweeper](https://en.wikipedia.org/wiki/Mineswee
 	$ curl -Lo ecs-cli.asc https://amazon-ecs-cli.s3.amazonaws.com/ecs-cli-linux-amd64-latest.asc
 	
   For Windows systems:
+  
 	$ Invoke-WebRequest -OutFile ecs-cli.asc https://amazon-ecs-cli.s3.amazonaws.com/ecs-cli-windows-amd64-latest.exe.asc
 
  2.4. Verify the signature.
@@ -159,7 +163,7 @@ Develop the classic game of [Minesweeper](https://en.wikipedia.org/wiki/Mineswee
  ## 4. Step 4: Complete the Installation
   
   Verify that the CLI is working properly.
-	<br>
+	
 	$ ecs-cli --version
 	
   Proceed to Configuring the Amazon ECS CLI.
