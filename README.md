@@ -171,7 +171,8 @@ Develop the classic game of [Minesweeper](https://en.wikipedia.org/wiki/Mineswee
  
   The following script configure an ECS-profile called tutorial for a cluster named minesweeper-cluster on the us-west-2 region with a default launch type based on EC2 instances:
 	<br>
-	#configure.sh
+	configure.sh
+	<br>
 	[Command]
 	$  #!/bin/bash
 	  set -e
@@ -196,7 +197,8 @@ Develop the classic game of [Minesweeper](https://en.wikipedia.org/wiki/Mineswee
 
  reation of the Cluster minesweeper-cluster with 2 ec2-instances t3.medium  
 	<br>
-	#create-cluster.sh
+	create-cluster.sh
+	<br>
 	[Command]
 	$ #!/bin/bash
 		KEY_PAIR=minesweeper-cluster
