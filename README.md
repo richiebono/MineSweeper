@@ -62,27 +62,29 @@ Develop the classic game of [Minesweeper](https://en.wikipedia.org/wiki/Mineswee
 	
 1. Step 1: Download the Amazon ECS CLI
   
-- For macOS:
+ For macOS:
 
 	$ sudo curl -Lo /usr/local/bin/ecs-cli https://amazon-ecs-cli.s3.amazonaws.com/ecs-cli-darwin-amd64-latest
 
-- For Linux systems:
+ For Linux systems:
 	
 	$ sudo curl -Lo /usr/local/bin/ecs-cli https://amazon-ecs-cli.s3.amazonaws.com/ecs-cli-linux-amd64-latest
 	
-- For Windows systems:
+ For Windows systems:
 
-  Open Windows PowerShell and run the following commands:	
+ Open Windows PowerShell and run the following commands:	
+ 
 	$ New-Item -Path 'C:\Program Files\Amazon\ECSCLI' -ItemType Directory
 	$ Invoke-WebRequest -OutFile 'C:\Program Files\Amazon\ECSCLI\ecs-cli.exe' https://amazon-ecs-cli.s3.amazonaws.com/ecs-cli-windows-amd64-latest.exe
 	
  2. Step 2: Verify the Amazon ECS CLI using PGP signatures
 
  The Amazon ECS CLI executables are cryptographically signed using PGP signatures. The PGP signatures can be used to verify the validity of the Amazon ECS CLI executable. Use the following steps to verify the signatures using the GnuPG tool.
- <br>
- - Download and install GnuPG. For more information, see the [GnuPG website] [Local Development with Docker Compose](https://www.gnupg.org/).
+  <br>
+  Download and install GnuPG. For more information, see the [GnuPG website] [Local Development with Docker Compose](https://www.gnupg.org/).
 
   For macOS, we recommend using Homebrew. Install Homebrew using the instructions from their website. For more information, see [Homebrew] (https://brew.sh/). After Homebrew is installed, use the following command from your macOS terminal.
+
 	$ brew install gnupg
 	
   For Linux systems, install gpg using the package manager on your flavor of Linux.
