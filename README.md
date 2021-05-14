@@ -49,7 +49,7 @@ Develop the classic game of [Minesweeper](https://en.wikipedia.org/wiki/Mineswee
 1. Requirements 
 - Install Docker
 
-## 1. [Local Development with Docker Compose](https://devcenter.heroku.com/articles/local-development-with-docker-compose)
+## 1. Local Development with Docker Compose
     
     $ docker-compose up -d --build
     $ open http://localhost:3000 /* access the web application with link */
@@ -60,17 +60,174 @@ Develop the classic game of [Minesweeper](https://en.wikipedia.org/wiki/Mineswee
 
 # Getting Started Production Environment
 	
-2. Container Orchestration Server and MicroServices 
-- execute command "" on preferred CMD
-- access the web application with link: https://bono-minesweeper-web.herokuapp.com
-- access the database manager adminer with link: https://bono-minesweeper-adminer.herokuapp.com
-- access the Account Mananger API with link: https://bono-minesweeper-Authentication-api.herokuapp.com 
-- access the game API with link: https://bono-minesweeper-game-api.herokuapp.com
-- access the monitoring server with link: https://bono-minesweeper-monitoring.herokuapp.com
-- access the db server with link: https://bono-minesweeper-db.herokuapp.com
+1. Step 1: Download the Amazon ECS CLI
 
-# Build and Test
-1. Access the video by YouTube: 
+* For macOS:
 
+	$ sudo curl -Lo /usr/local/bin/ecs-cli https://amazon-ecs-cli.s3.amazonaws.com/ecs-cli-darwin-amd64-latest
+
+* For Linux systems:
+	
+	$ sudo curl -Lo /usr/local/bin/ecs-cli https://amazon-ecs-cli.s3.amazonaws.com/ecs-cli-linux-amd64-latest
+	
+* For Windows systems:
+
+	Open Windows PowerShell and run the following commands:
+	
+	$ New-Item -Path 'C:\Program Files\Amazon\ECSCLI' -ItemType Directory
+	$ Invoke-WebRequest -OutFile 'C:\Program Files\Amazon\ECSCLI\ecs-cli.exe' https://amazon-ecs-cli.s3.amazonaws.com/ecs-cli-windows-amd64-latest.exe
+	
+2. Step 2: Verify the Amazon ECS CLI using PGP signatures
+
+The Amazon ECS CLI executables are cryptographically signed using PGP signatures. The PGP signatures can be used to verify the validity of the Amazon ECS CLI executable. Use the following steps to verify the signatures using the GnuPG tool.
+<br>
+2.1. Download and install GnuPG. For more information, see the [GnuPG website] [Local Development with Docker Compose](https://www.gnupg.org/).
+
+	For macOS, we recommend using Homebrew. Install Homebrew using the instructions from their website. For more information, see [Homebrew] (https://brew.sh/). After Homebrew is installed, use the following command from your macOS terminal.
+	$ brew install gnupg
+	
+	For Linux systems, install gpg using the package manager on your flavor of Linux.
+
+	For Windows systems, download and use the Windows simple installer from the GnuPG website. For more information, see [GnuPG Download] (https://www.gnupg.org/download/index.html).
+
+<br>
+2.2. Retrieve the Amazon ECS PGP public key. You can use a command to do this or manually create the key and then import it.
+
+	a. Retrieve the key with the following command.
+	
+	$ gpg --keyserver hkp://keys.gnupg.net --recv BCE9D9A42D51784F
+
+	b. Import the Amazon ECS PGP public key with the following command.
+	
+	$ gpg --import signature.key
+	
+2.3. Download the Amazon ECS CLI signatures. The signatures are ASCII detached PGP signatures stored in files with the extension .asc. The signatures file has the same name as its corresponding executable, with .asc appended.
+
+	For macOS systems:
+	$ curl -Lo ecs-cli.asc https://amazon-ecs-cli.s3.amazonaws.com/ecs-cli-darwin-amd64-latest.asc
+
+	For Linux systems:
+	$ curl -Lo ecs-cli.asc https://amazon-ecs-cli.s3.amazonaws.com/ecs-cli-linux-amd64-latest.asc
+	
+	For Windows systems:
+	$ Invoke-WebRequest -OutFile ecs-cli.asc https://amazon-ecs-cli.s3.amazonaws.com/ecs-cli-windows-amd64-latest.exe.asc
+
+2.4. Verify the signature.
+
+	For macOS and Linux systems:
+
+	$ gpg --verify ecs-cli.asc /usr/local/bin/ecs-cli
+
+	For Windows systems:
+
+	$ gpg --verify ecs-cli.asc 'C:\Program Files\Amazon\ECSCLI\ecs-cli.exe'
+	
+	Expected output:
+
+	gpg: Signature made Tue Apr  3 13:29:30 2018 PDT
+	gpg:                using RSA key DE3CBD61ADAF8B8E
+	gpg: Good signature from "Amazon ECS <ecs-security@amazon.com>" [unknown]
+	gpg: WARNING: This key is not certified with a trusted signature!
+	gpg:          There is no indication that the signature belongs to the owner.
+	Primary key fingerprint: F34C 3DDA E729 26B0 79BE  AEC6 BCE9 D9A4 2D51 784F
+		 Subkey fingerprint: EB3D F841 E2C9 212A 2BD4  2232 DE3C BD61 ADAF 8B8E
+	
+
+3. Step 3: Apply Execute Permissions to the Binary
+
+	Apply execute permissions to the binary.
+
+	* For macOS and Linux systems:
+
+	$ sudo chmod +x /usr/local/bin/ecs-cli
+
+	* For Windows systems:
+	Edit the environment variables and add C:\Program Files\Amazon\ECSCLI to the PATH variable field, separated from existing entries by using a semicolon. For example:
+
+	$ setx path "%path%;C:\Program Files\Amazon\ECSCLI"
+	Restart PowerShell (or the command prompt) so the changes go into effect.
+
+	Note
+	Once the PATH variable is set, the Amazon ECS CLI can be used from either Windows PowerShell or the command prompt.
+
+4. Step 4: Complete the Installation
+Verify that the CLI is working properly.
+
+	$ ecs-cli --version
+	
+	Proceed to Configuring the Amazon ECS CLI.
+
+5. Configure ecs-cli
+
+	5.1. Prerequisite
+
+	*AWS CLI v2 must be installed.
+	*You need to have an AWS_ACCESS_KEY_ID / AWS_SECRET_ACCESS_KEY with administrative privileges
+	 
+	To create your AWS_ACCESS_KEY_ID you can read this [documentation] (https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html#Using_CreateAccessKey)
+ 
+	Your environment variables must be configured with a correct pair of AWS_ACCESS_KEY_ID / AWS_SECRET_ACCESS_KEY
+	$ export AWS_ACCESS_KEY_ID="Your Access Key"
+	$ export AWS_SECRET_ACCESS_KEY="Your Secret Access Key"
+	$ export AWS_DEFAULT_REGION=us-west-2
+ 
+	The following script configure an ECS-profile called tutorial for a cluster named minesweeper-cluster on the us-west-2 region with a default launch type based on EC2 instances:
+	
+	$ configure.sh	
+	$ #!/bin/bash
+	  set -e
+	  PROFILE_NAME=minesweeper
+      CLUSTER_NAME=minesweeper-cluster
+      REGION=us-west-2
+      LAUNCH_TYPE=EC2
+      ecs-cli configure profile --profile-name "$PROFILE_NAME" --access-key "$AWS_ACCESS_KEY_ID" --secret-key "$AWS_SECRET_ACCESS_KEY"
+      ecs-cli configure --cluster "$CLUSTER_NAME" --default-launch-type "$LAUNCH_TYPE" --region "$REGION" --config-name "$PROFILE_NAME"
+  
+6. Creation of an ECS-Cluster 🚀
+	
+	We will create an ECS-Cluster based on ec2 instance.
+	ECS allows 2 launch types EC2 and FARGATE
+
+	EC2 (Deploy and manage your own cluster of EC2 instances for running the containers)
+	AWS Fargate (Run containers directly, without any EC2 instances)
+	If we want to connect to the ec2 instances with ssh we need to have a key pair
+
+	👉 Creation of a key pair called minesweeper-cluster :
+	aws ec2 create-key-pair --key-name minesweeper-cluster --query 'KeyMaterial' --output text > ~/.ssh/minesweeper-cluster.pem
+ 
+	reation of the Cluster minesweeper-cluster with 2 ec2-instances t3.medium
+
+	$ create-cluster.sh
+	#!/bin/bash
+	KEY_PAIR=minesweeper-cluster
+		ecs-cli up \
+		  --keypair $KEY_PAIR  \
+		  --capability-iam \
+		  --size 6 \
+		  --instance-type t3.medium \
+		  --tags project=minesweeper-cluster,owner=richiebono \
+		  --cluster-config minesweeper \
+		  --ecs-profile minesweeper
+ 
+	This command create:
+
+	A new public VPC
+	An internet gateway
+	The routing tables
+	2 public subnets in 2 availability zones
+	1 security group
+	1 autoscaling group
+	6 ec2 instances
+	1 ecs cluster
+ 
+	This stack can best tested locally
+	$ docker-compose up
+	
+	We can now deploy this stack on AWS ECS:
+	$ ecs-cli compose --project-name minesweeper  --file docker-compose.yml --debug service up  --deployment-max-percent 100 --deployment-min-healthy-percent 0 --region us-est-2 --ecs-profile minesweeper --cluster-config minesweeper
+	
+	To verify that the service is running we can use this command:
+	$ ecs-cli ps
+	
 # Reporting security issues and bugs
 Security issues and bugs should be reported privately, via email, to developer by email richiebono@gmail.com. You should receive a response within maximum 24 hours.
