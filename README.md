@@ -137,11 +137,11 @@ Develop the classic game of [Minesweeper](https://en.wikipedia.org/wiki/Mineswee
 
   Apply execute permissions to the binary.
 
-  * For macOS and Linux systems:
+  For macOS and Linux systems:
 	
 	$ sudo chmod +x /usr/local/bin/ecs-cli
 
-  * For Windows systems:
+  For Windows systems:
   <br>
   Edit the environment variables and add C:\Program Files\Amazon\ECSCLI to the PATH variable field, separated from existing entries by using a semicolon. For example:
 	
@@ -170,6 +170,7 @@ Develop the classic game of [Minesweeper](https://en.wikipedia.org/wiki/Mineswee
   To create your AWS_ACCESS_KEY_ID you can read this [documentation] (https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html#Using_CreateAccessKey)
  
   Your environment variables must be configured with a correct pair of AWS_ACCESS_KEY_ID / AWS_SECRET_ACCESS_KEY
+  
 	$ export AWS_ACCESS_KEY_ID="Your Access Key"
 	$ export AWS_SECRET_ACCESS_KEY="Your Secret Access Key"
 	$ export AWS_DEFAULT_REGION=us-west-2
@@ -224,15 +225,15 @@ Develop the classic game of [Minesweeper](https://en.wikipedia.org/wiki/Mineswee
  - 1 ecs cluster
  
  This stack can best tested locally
-	[Command]
+	
 	$ docker-compose up
 	
  We can now deploy this stack on AWS ECS:
-	[Command]
+	
 	$ ecs-cli compose --project-name minesweeper  --file docker-compose.yml --debug service up  --deployment-max-percent 100 --deployment-min-healthy-percent 0 --region us-est-2 --ecs-profile minesweeper --cluster-config minesweeper
 	
  To verify that the service is running we can use this command:
-	[Command]
+	
 	$ ecs-cli ps
 	
 # Reporting security issues and bugs
