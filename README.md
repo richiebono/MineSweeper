@@ -52,6 +52,13 @@ Develop the classic game of [Minesweeper](https://en.wikipedia.org/wiki/Mineswee
   [For Linux systems](https://docs.docker.com/engine/install/ubuntu/)<br>
   [For Windows systems](https://docs.docker.com/docker-for-windows/install/)
 
+- Install Docker-Machine
+
+	[For macOS](https://docs.docker.com/docker-for-mac/install/)<br>
+	[For Linux systems](https://docs.docker.com/engine/install/ubuntu/)<br>
+  
+	[For Windows](https://github.com/docker/machine/releases/download/v0.16.2/docker-machine-Windows-x86_64.exe)
+
 ## 1. Local Development with Docker Compose
     
     $ docker-compose up -d --build
@@ -75,7 +82,7 @@ Develop the classic game of [Minesweeper](https://en.wikipedia.org/wiki/Mineswee
 	
  1.3 For Windows systems:
 
-  Open Windows PowerShell and run the following commands:	
+  Open Windows PowerShell with admin privileges and run the following commands:	
  
 	$ New-Item -Path 'C:\Program Files\Amazon\ECSCLI' -ItemType Directory
 	$ Invoke-WebRequest -OutFile 'C:\Program Files\Amazon\ECSCLI\ecs-cli.exe' https://amazon-ecs-cli.s3.amazonaws.com/ecs-cli-windows-amd64-latest.exe
@@ -96,7 +103,7 @@ Develop the classic game of [Minesweeper](https://en.wikipedia.org/wiki/Mineswee
 
  <br>
  2.2. Retrieve the Amazon ECS PGP public key. You can use a command to do this or manually create the key and then import it.
-
+  <br>
   a. Retrieve the key with the following command.
 	
 	$ gpg --keyserver hkp://keys.gnupg.net --recv BCE9D9A42D51784F
@@ -176,24 +183,12 @@ Develop the classic game of [Minesweeper](https://en.wikipedia.org/wiki/Mineswee
   *You need to have an AWS_ACCESS_KEY_ID / AWS_SECRET_ACCESS_KEY with administrative privileges
 	 
   To create your AWS_ACCESS_KEY_ID you can read this [documentation](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html#Using_CreateAccessKey)
- 
-  Your environment variables must be configured with a correct pair of AWS_ACCESS_KEY_ID / AWS_SECRET_ACCESS_KEY
-  
-	$ export AWS_ACCESS_KEY_ID="Your Access Key"
-	$ export AWS_SECRET_ACCESS_KEY="Your Secret Access Key"
-	$ export AWS_DEFAULT_REGION=us-west-2
- 
+   
   The following script configure an ECS-profile called tutorial for a cluster named minesweeper-cluster on the us-west-2 region with a default launch type based on EC2 instances:
-	
-	[configure.sh]
-	$  #!/bin/bash
-	  set -e
-	  PROFILE_NAME=minesweeper
-      CLUSTER_NAME=minesweeper-cluster
-      REGION=us-west-2
-      LAUNCH_TYPE=EC2
-      ecs-cli configure profile --profile-name "$PROFILE_NAME" --access-key "$AWS_ACCESS_KEY_ID" --secret-key "$AWS_SECRET_ACCESS_KEY"
-      ecs-cli configure --cluster "$CLUSTER_NAME" --default-launch-type "$LAUNCH_TYPE" --region "$REGION" --config-name "$PROFILE_NAME"
+	$ docker context create ecs minesweeper
+	$ docker context ls
+	$ docker context use minesweeper	
+	$ ecs-cli up --keypair $KEY_PAIR --capability-iam --size 6 --instance-type t3.medium --tags project=minesweeper-cluster,owner=richiebono --cluster-config minesweeper-cluster --ecs-profile minesweeper-cluster --cluster minesweeper-cluster --capability-iam --region eu-west-1
 
 ## 6. Creation of an ECS-Cluster 🚀
 	
@@ -205,36 +200,16 @@ Develop the classic game of [Minesweeper](https://en.wikipedia.org/wiki/Mineswee
  If we want to connect to the ec2 instances with ssh we need to have a key pair
 
  👉 Creation of a key pair called minesweeper-cluster :
- aws ec2 create-key-pair --key-name minesweeper-cluster --query 'KeyMaterial' --output text > ~/.ssh/minesweeper-cluster.pem
+ 
+	$ aws ec2 create-key-pair --key-name minesweeper-cluster --query 'KeyMaterial' --output text > ~/.ssh/minesweeper-cluster.pem
 
  reation of the Cluster minesweeper-cluster with 2 ec2-instances t3.medium  
 	
-	[create-cluster.sh]
-	$ #!/bin/bash
-		KEY_PAIR=minesweeper-cluster
-			ecs-cli up \
-			  --keypair $KEY_PAIR  \
-			  --capability-iam \
-			  --size 6 \
-			  --instance-type t3.medium \
-			  --tags project=minesweeper-cluster,owner=richiebono \
-			  --cluster-config minesweeper \
-			  --ecs-profile minesweeper
- 
- This command create:
-
- - A new public VPC
- - An internet gateway
- - The routing tables
- - 2 public subnets in 2 availability zones
- - 1 security group
- - 1 autoscaling group
- - 6 ec2 instances
- - 1 ecs cluster
- 
  This stack can best tested locally
 	
+	$ docker context use default
 	$ docker-compose up
+	$ docker context use minesweeper
 	
  We can now deploy this stack on AWS ECS:
 	
@@ -242,7 +217,7 @@ Develop the classic game of [Minesweeper](https://en.wikipedia.org/wiki/Mineswee
 	
  To verify that the service is running we can use this command:
 	
-	$ ecs-cli ps
+	$ aws ecs describe-clusters --cluster minesweeper-cluster
 	
 # Reporting security issues and bugs
 Security issues and bugs should be reported privately, via email, to developer by email richiebono@gmail.com. You should receive a response within maximum 24 hours.
