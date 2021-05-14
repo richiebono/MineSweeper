@@ -60,7 +60,7 @@ Develop the classic game of [Minesweeper](https://en.wikipedia.org/wiki/Mineswee
 
 # Getting Started Production Environment
 	
-1 Step 1: Download the Amazon ECS CLI
+Step 1: Download the Amazon ECS CLI
   
  1.1. For macOS:
 
