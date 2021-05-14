@@ -103,9 +103,11 @@ Develop the classic game of [Minesweeper](https://en.wikipedia.org/wiki/Mineswee
  2.3. Download the Amazon ECS CLI signatures. The signatures are ASCII detached PGP signatures stored in files with the extension .asc. The signatures file has the same name as its corresponding executable, with .asc appended.
 
   For macOS systems:
+  
 	$ curl -Lo ecs-cli.asc https://amazon-ecs-cli.s3.amazonaws.com/ecs-cli-darwin-amd64-latest.asc
 
   For Linux systems:
+  
 	$ curl -Lo ecs-cli.asc https://amazon-ecs-cli.s3.amazonaws.com/ecs-cli-linux-amd64-latest.asc
 	
   For Windows systems:
@@ -114,9 +116,11 @@ Develop the classic game of [Minesweeper](https://en.wikipedia.org/wiki/Mineswee
  2.4. Verify the signature.
 
   For macOS and Linux systems:
+	
 	$ gpg --verify ecs-cli.asc /usr/local/bin/ecs-cli
 
   For Windows systems:
+	
 	$ gpg --verify ecs-cli.asc 'C:\Program Files\Amazon\ECSCLI\ecs-cli.exe'
 	
   Expected output:
@@ -134,12 +138,13 @@ Develop the classic game of [Minesweeper](https://en.wikipedia.org/wiki/Mineswee
   Apply execute permissions to the binary.
 
   * For macOS and Linux systems:
-
+	
 	$ sudo chmod +x /usr/local/bin/ecs-cli
 
   * For Windows systems:
+  <br>
   Edit the environment variables and add C:\Program Files\Amazon\ECSCLI to the PATH variable field, separated from existing entries by using a semicolon. For example:
-
+	
 	$ setx path "%path%;C:\Program Files\Amazon\ECSCLI"
 	
   Restart PowerShell (or the command prompt) so the changes go into effect.
@@ -150,7 +155,7 @@ Develop the classic game of [Minesweeper](https://en.wikipedia.org/wiki/Mineswee
  4. Step 4: Complete the Installation
   
   Verify that the CLI is working properly.
-
+	<br>
 	$ ecs-cli --version
 	
   Proceed to Configuring the Amazon ECS CLI.
