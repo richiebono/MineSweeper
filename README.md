@@ -62,17 +62,17 @@ Develop the classic game of [Minesweeper](https://en.wikipedia.org/wiki/Mineswee
 	
 1. Step 1: Download the Amazon ECS CLI
   
-	For macOS:
+ 1.1. For macOS:
 
 	$ sudo curl -Lo /usr/local/bin/ecs-cli https://amazon-ecs-cli.s3.amazonaws.com/ecs-cli-darwin-amd64-latest
 
-	For Linux systems:
+ 1.2. For Linux systems:
 	
 	$ sudo curl -Lo /usr/local/bin/ecs-cli https://amazon-ecs-cli.s3.amazonaws.com/ecs-cli-linux-amd64-latest
 	
- For Windows systems:
+ 1.3 For Windows systems:
 
- Open Windows PowerShell and run the following commands:	
+  Open Windows PowerShell and run the following commands:	
  
 	$ New-Item -Path 'C:\Program Files\Amazon\ECSCLI' -ItemType Directory
 	$ Invoke-WebRequest -OutFile 'C:\Program Files\Amazon\ECSCLI\ecs-cli.exe' https://amazon-ecs-cli.s3.amazonaws.com/ecs-cli-windows-amd64-latest.exe
