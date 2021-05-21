@@ -1,4 +1,4 @@
-version: '2'
+version: '3'
 
 services:
 
@@ -30,8 +30,7 @@ services:
       context: .
       dockerfile: MineSweeper.Authentication.Api/Dockerfile
     ports:
-      - 8081:8081
-    
+      - 8081:8081     
     depends_on:
       - mine-sweeper-db
     
@@ -45,7 +44,7 @@ services:
       context: .
       dockerfile: MineSweeper.Game.Api/Dockerfile
     ports:
-      - 8082:8082
+      - 8082:8082   
     depends_on:
       - mine-sweeper-db
       - mine-sweeper-authentication-api
@@ -57,7 +56,7 @@ services:
       context: .
       dockerfile: MineSweeper.Monitoring/Dockerfile
     ports:
-      - 8083:8083
+      - 8083:8083      
     depends_on:
       - mine-sweeper-game-api
       - mine-sweeper-authentication-api
@@ -74,13 +73,11 @@ services:
       dockerfile: MineSweeper.Web.React/Dockerfile
     ports:
       - 3000:3000
-    volumes:
-      # - './Build/MineSweeper.Web.React/:/app'
-      - '.:/app'
-      - '/app/node_modules'        
+    # volumes:
+      # - './Build/MineSweeper.Web.React/:/app'     
+      # - '/app/node_modules'        
     depends_on: 
       - mine-sweeper-authentication-api
       - mine-sweeper-game-api  
-      - mine-sweeper-monitoring      
-      
-   
+      - mine-sweeper-monitoring          
+  

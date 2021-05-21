@@ -185,39 +185,62 @@ Develop the classic game of [Minesweeper](https://en.wikipedia.org/wiki/Mineswee
   To create your AWS_ACCESS_KEY_ID you can read this [documentation](https://docs.aws.amazon.com/IAM/latest/UserGuide/id_credentials_access-keys.html#Using_CreateAccessKey)
    
   The following script configure an ECS-profile called tutorial for a cluster named minesweeper-cluster on the us-west-2 region with a default launch type based on EC2 instances:
-	$ docker context create ecs minesweeper
-	$ docker context ls
-	$ docker context use minesweeper	
-	$ ecs-cli up --keypair $KEY_PAIR --capability-iam --size 6 --instance-type t3.medium --tags project=minesweeper-cluster,owner=richiebono --cluster-config minesweeper-cluster --ecs-profile minesweeper-cluster --cluster minesweeper-cluster --capability-iam --region eu-west-1
-
-## 6. Creation of an ECS-Cluster 🚀
 	
- We will create an ECS-Cluster based on ec2 instance.
- ECS allows 2 launch types EC2 and FARGATE
-
  EC2 (Deploy and manage your own cluster of EC2 instances for running the containers)
  AWS Fargate (Run containers directly, without any EC2 instances)
  If we want to connect to the ec2 instances with ssh we need to have a key pair
 
  👉 Creation of a key pair called minesweeper-cluster :
  
-	$ aws ec2 create-key-pair --key-name minesweeper-cluster --query 'KeyMaterial' --output text > ~/.ssh/minesweeper-cluster.pem
+	$ aws ec2 create-key-pair --key-name minesweeper-cluster --query 'KeyMaterial' --output text > minesweeper-cluster.pem --region us-west-1
+	
+👉 List minesweeper-cluster key-pairs:	
+	
+	$ aws ec2 describe-key-pairs --region us-west-1
 
- reation of the Cluster minesweeper-cluster with 2 ec2-instances t3.medium  
+👉 Delete minesweeper-cluster key-pairs:	
+
+	$ aws ec2 delete-key-pair --key-name minesweeper-cluster
+  
+👉 Configure profile:	  
+  
+	$ ecs-cli configure --cluster minesweeper-cluster --default-launch-type EC2 --config-name minesweeper-cluster --region us-west-1	
+	$ ecs-cli configure profile --access-key <your access key> --secret-key <your secret key>  --profile-name minesweeper-cluster-profile
+	
+## 6. Creation of an ECS-Cluster 🚀
+	
+ We will create an ECS-Cluster based on ec2 instance.
+ ECS allows 3 launch types EC2 and FARGATE
+
+ reation of the Cluster minesweeper-cluster with 3 ec2-instances t2.medium  
+
+Create ECS Context:
+  
+	$ docker context create ecs minesweeper-cluster
+	$ docker context ls
+	$ docker context use minesweeper-cluster		
 	
  This stack can best tested locally
 	
 	$ docker context use default
-	$ docker-compose up
-	$ docker context use minesweeper
+	$ docker-compose up -d --build
+	$ docker-compose down
+	$ docker context use minesweeper-cluster
 	
  We can now deploy this stack on AWS ECS:
 	
-	$ ecs-cli compose --project-name minesweeper  --file docker-compose.yml --debug service up  --deployment-max-percent 100 --deployment-min-healthy-percent 0 --region us-est-2 --ecs-profile minesweeper --cluster-config minesweeper
+	$ ecs-cli up --keypair minesweeper-cluster --capability-iam --size 3 --instance-type t3.medium --cluster-config minesweeper-cluster --ecs-profile minesweeper-cluster-profile --capability-iam
+	$ ecs-cli compose up --create-log-groups --cluster-config minesweeper-cluster --ecs-profile minesweeper-cluster-profile
 	
- To verify that the service is running we can use this command:
+ To verify that the service is running we can use these commands:
 	
 	$ aws ecs describe-clusters --cluster minesweeper-cluster
+	$ ecs-cli ps --cluster-config minesweeper-cluster --ecs-profile minesweeper-cluster-profile
+	
+ If you wish to delete cluster:
+	
+	$ ecs-cli compose service rm --cluster-config minesweeper-cluster --ecs-profile minesweeper-cluster-profile
+	$ ecs-cli down --force --cluster minesweeper-cluster --region eu-west-1
 	
 # Reporting security issues and bugs
 Security issues and bugs should be reported privately, via email, to developer by email richiebono@gmail.com. You should receive a response within maximum 24 hours.
