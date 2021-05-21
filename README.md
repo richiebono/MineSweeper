@@ -229,7 +229,7 @@ Create ECS Context:
 	
  We can now deploy this stack on AWS ECS:
 	
-	$ ecs-cli up --keypair minesweeper-cluster --capability-iam --size 3 --instance-type t3.medium --cluster-config minesweeper-cluster --ecs-profile minesweeper-cluster-profile --capability-iam
+	$ ecs-cli up --keypair minesweeper-cluster --capability-iam --size 3 --instance-type t2.medium --cluster-config minesweeper-cluster --ecs-profile minesweeper-cluster-profile --capability-iam
 	$ ecs-cli compose up --create-log-groups --cluster-config minesweeper-cluster --ecs-profile minesweeper-cluster-profile
 	
  To verify that the service is running we can use these commands:
