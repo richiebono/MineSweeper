@@ -198,7 +198,7 @@ Develop the classic game of [Minesweeper](https://en.wikipedia.org/wiki/Mineswee
 	
 	$ aws ec2 describe-key-pairs --region us-west-1
 
-👉 Delete minesweeper-cluster key-pairs:	
+👉 If you wish to delete minesweeper-cluster key-pairs:	
 
 	$ aws ec2 delete-key-pair --key-name minesweeper-cluster
   
